@@ -18,8 +18,8 @@ public class WomensClothingStepsDefinitions {
         womensClothingPage.open();
     }
 
-    @When("^John selects first product on Women's Clothing Page$")
-    public void johnSelectsFirstProductOnWomensClothingPage() {
+    @When("^John has selected first product on Women's Clothing Page$")
+    public void johnHasSelectedFirstProductOnWomenSClothingPage() {
         johnny.clicksOnFirstProductOnPage();
     }
 }

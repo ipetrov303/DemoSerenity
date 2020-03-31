@@ -20,9 +20,8 @@ public class ProductStepsDefinitions {
 
     ProductPage productPage;
 
-    @And("^John selects preferred option on Product Page:$")
-    public void johnSelectsPreferredOptionOnProductPage(List<ProductPreferences> data) {
-
+    @And("^John has selected preferred option on Product Page:$")
+    public void johnHasSelectedPreferredOptionOnProductPage(List<ProductPreferences> data) {
         ProductPreferences preferences = data.get(0);
         johnny.purchaseToTheCart(preferences);
     }
@@ -34,10 +33,8 @@ public class ProductStepsDefinitions {
     }
 
 
-    @When("^John clicks on the proceed to checkout button$")
-    public void johnClicksOnTheProceedToCheckoutButton() {
-
+    @When("^John has clicked on the proceed to checkout button$")
+    public void johnHasClickedOnTheProceedToCheckoutButton() {
         johnny.clicksOnProceedToCheckOutButton();
-
     }
 }
