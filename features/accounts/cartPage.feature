@@ -1,16 +1,13 @@
 Feature: Successfully Adding a Product to the Basket
 
-  Background:
-    Given John is on the Women's Product Page
-
-
   Scenario: Successfully Adding a Product to the Cart
-    When John has selected first product on Women's Clothing Page
-    And John has selected preferred option on Product Page:
+    Given John is on the Women's Product Page
+    And he has selected the first product on Women's Clothing Page
+    When John adds the product with his preferences to the cart:
       | quantity | size | color |
       | 2        | L    | blue  |
-    Then John should see a popup window with notification "Product successfully added to your shopping cart"
-    When John has clicked on the proceed to checkout button
-    Then John should be redirected to the cart and see the product and quantities that he selected
+    Then notification "Product successfully added to your shopping cart" is shown
+    When John clicks on the proceed to checkout button
+    Then John is redirected to the cart where summary for his purchase is shown:
       | product                     | quantity | total_price |
       | Faded Short Sleeve T-shirts | 2        | 35.02       |

@@ -16,10 +16,8 @@ public class CartStepsDefinitions {
 
     CartPage cartPage;
 
-
-    @Then("^John should be redirected to the cart and see the product and quantities that he selected$")
-    public void johnShouldBeRedirectedToTheCartAndSeeTheProductAndQuantitiesThatHeSelected(List<ProductPreferences> data) {
-
+    @Then("^John is redirected to the cart where summary for his purchase is shown:$")
+    public void johnIsRedirectedToTheCartWhereSummaryForHisPurchaseIsShown(List<ProductPreferences> data) {
         ProductPreferences preferences = data.get(0);
         SoftAssertions softly = new SoftAssertions();
 

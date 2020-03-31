@@ -12,7 +12,7 @@ public class ProductPageActions extends BasesActions {
     ProductPage productPage;
 
     @Step
-    public void purchaseToTheCart(ProductPreferences preferences) {
+    public void addToCart(ProductPreferences preferences) {
         fillsFieldWithData(productPage.quantityField, preferences.getQuantity());
         selectSize(preferences.getSize());
         selectColor(preferences.getColor());
