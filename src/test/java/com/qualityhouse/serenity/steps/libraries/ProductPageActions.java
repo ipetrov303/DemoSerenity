@@ -2,7 +2,6 @@ package com.qualityhouse.serenity.steps.libraries;
 
 import com.qualityhouse.serenity.entities.ProductPreferences;
 import com.qualityhouse.serenity.page_objects.ProductPage;
-import com.qualityhouse.serenity.page_objects.WomensClothingPage;
 import com.qualityhouse.serenity.utils.SizeEnum;
 import net.thucydides.core.annotations.Step;
 
@@ -10,7 +9,6 @@ import static com.qualityhouse.serenity.page_objects.components.ProductPageCompo
 
 public class ProductPageActions extends BasesActions {
 
-    WomensClothingPage womensClothingPage;
     ProductPage productPage;
 
     @Step

@@ -6,8 +6,6 @@ import com.qualityhouse.serenity.page_objects.ProductPage;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
@@ -20,9 +18,7 @@ import static com.qualityhouse.serenity.page_objects.components.ProductPageCompo
  **/
 public class BasesActions {
     private BasePage currentPage;
-    private ProductPage productPage;
     private CartPage cartPage;
-    WebDriver driver;
 
     @Step("Enters '{1}' in field {0}")
     protected void fillsFieldWithData(WebElementFacade fieldElement,
@@ -90,15 +86,6 @@ public class BasesActions {
     public String getQuantityOfProduct(WebElementFacade webElement) {
 
         return webElement.waitUntilVisible().getAttribute("value");
-    }
-
-    @Step
-    protected void clicksOnDesiredColor(String color) {
-        if (color.equalsIgnoreCase("Orange")) {
-            clicksOn(productPage.Orange);
-        } else if (color.equalsIgnoreCase("Blue")) {
-            clicksOn(productPage.Blue);
-        }
     }
 
     @Step
