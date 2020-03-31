@@ -1,5 +1,6 @@
 Feature: Successfully Adding a Product to the Basket
 
+  @debug
   Scenario: Successfully Adding a Product to the Cart
     Given John is on the Women's Product Page
     And he has selected the first product on Women's Clothing Page

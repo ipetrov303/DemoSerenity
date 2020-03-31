@@ -27,7 +27,7 @@ public class ProductStepsDefinitions {
 
     @Then("^notification \"([^\"]*)\" is shown$")
     public void notificationIsShown(String success_notification) {
-        assertThat(johnny.readsTextFrom(productPage.succesNotification)).containsIgnoringCase(success_notification);
+        assertThat(johnny.readsTextFrom(productPage.successNotification)).containsIgnoringCase(success_notification);
     }
 
     @When("^John clicks on the proceed to checkout button$")

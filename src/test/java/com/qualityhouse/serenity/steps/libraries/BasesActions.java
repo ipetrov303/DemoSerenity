@@ -2,7 +2,6 @@ package com.qualityhouse.serenity.steps.libraries;
 
 import com.qualityhouse.serenity.page_objects.BasePage;
 import com.qualityhouse.serenity.page_objects.CartPage;
-import com.qualityhouse.serenity.page_objects.ProductPage;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 import org.openqa.selenium.By;
@@ -103,9 +102,10 @@ public class BasesActions {
     @Step
     public Double calculateTotalPrice() {
         double totalShipping = Double.parseDouble(readsTextFrom(cartPage.priceOfShipping).substring(1));
-        double unitPrice = Double.parseDouble(readsTextFrom(cartPage.priceOfOne).substring(1));
+        double unitPrice = Double.parseDouble(readsTextFrom(cartPage.unitPrice).substring(1));
         double totalTax = Double.parseDouble(readsTextFrom(cartPage.totalTaxPrice).substring(1));
         double totalQuantity = Double.parseDouble(getQuantityOfProduct(cartPage.quantityField));
+        System.out.println(unitPrice);
 
         return unitPrice * totalQuantity + totalShipping + totalTax;
     }
