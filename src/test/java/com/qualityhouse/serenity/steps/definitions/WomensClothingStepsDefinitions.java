@@ -18,8 +18,8 @@ public class WomensClothingStepsDefinitions {
         womensClothingPage.open();
     }
 
-    @And("^he has selected the first product on Women's Clothing Page$")
-    public void heHasSelectedTheFirstProductOnWomenSClothingPage() {
+    @And("^he chooses the first product on Women's Clothing Page$")
+    public void heChoosesTheFirstProductOnWomenSClothingPage() {
         johnny.clicksOnFirstProductOnPage();
     }
 }

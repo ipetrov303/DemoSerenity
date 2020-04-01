@@ -3,7 +3,7 @@ Feature: Successfully Adding a Product to the Basket
   @debug
   Scenario: Successfully Adding a Product to the Cart
     Given John is on the Women's Product Page
-    And he has selected the first product on Women's Clothing Page
+    And he chooses the first product on Women's Clothing Page
     When John adds the product with his preferences to the cart:
       | quantity | size | color |
       | 2        | L    | blue  |
