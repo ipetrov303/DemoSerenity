@@ -62,3 +62,18 @@ Feature: Account Registration
       | Mr.   | John       | Snow      | password123 | 28-February-1985 | gate 13 | South | Alaska | 14253 | United States |              | TheWall       | You must register at least one phone number                                      |
       | Mr.   | John       | Snow      | password123 | 28-February-1985 | gate 13 | South | Alaska | 14253 | United States | 42342342343  |               | alias is required                                                                |
       | Mr.   | John       | Snow      | password123 | 28-February-1985 | gate 13 | South | -      | 14253 | United States | 42342342343  | TheWall       | This country requires you to choose a State                                      |
+
+    @debug
+  Scenario: Unsuccessful Registration with many wrong data
+  ! System should not allow user registration with invalid data
+    Given John is on the login page
+    And he has started an account registration with "jhondsnow[4a]@south.go" email
+    When John enters his personal details:
+      | title | firstName | lastName | password | dataOfBirth      |
+      | Mr.   |           |          | yrtyrt   | 28-February-1985 |
+    And he enters his address details:
+      | address | city | state  | zip | mobilePhone | addressAlias      |
+      | gate 13 | [5a] | Alaska |     | 423423423   | goshi[4s] address |
+    And he submits his registration details
+    Then the following error messages should display:
+      | firstname is required. | The Zip/Postal code you've entered is invalid. It must follow this format: 00000 | lastname is required. |

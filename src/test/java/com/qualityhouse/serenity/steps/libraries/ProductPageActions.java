@@ -12,19 +12,14 @@ public class ProductPageActions extends BasesActions {
     ProductPage productPage;
 
     @Step
-    public void addToCart(ProductPreferences preferences) {
-        fillsFieldWithData(productPage.quantityField, preferences.getQuantity());
-        selectSize(preferences.getSize());
-        selectColor(preferences.getColor());
+    public void addToCart(ProductPreferences product) {
+        selectQuantity(product.getQuantity());
+        selectSize(product.getSize());
+        selectColor(product.getColor());
         clicksOn(productPage.addToCartButton);
     }
 
-    @Step
-    public void clicksOnProceedToCheckOutButton() {
 
-        clicksOn(productPage.proceedToCheckOutButton);
-
-    }
 
     private void selectSize(String itemSize) {
         if (itemSize != null) {
@@ -35,4 +30,22 @@ public class ProductPageActions extends BasesActions {
         }
     }
 
+    public double getUnitProductPrice() {
+        return Double.parseDouble(readsTextFrom(productPage.unitPrice).substring(1));
+    }
+
+    public String getProductName() {
+        return readsTextFrom(productPage.productName);
+    }
+
+    @Step
+    public void clicksOnProceedToCheckOutButton() {
+
+        clicksOn(productPage.proceedToCheckOutButton);
+
+    }
+    @Step
+    private void selectQuantity(int quantity) {
+        fillsFieldWithData(productPage.quantityField, String.valueOf(quantity));
+    }
 }

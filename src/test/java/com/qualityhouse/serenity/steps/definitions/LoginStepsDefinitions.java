@@ -4,7 +4,6 @@ import com.qualityhouse.serenity.entities.User;
 import com.qualityhouse.serenity.page_objects.HomePage;
 import com.qualityhouse.serenity.page_objects.LoginPage;
 import com.qualityhouse.serenity.steps.libraries.LoginActions;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -37,11 +36,6 @@ LoginStepsDefinitions {
     public void iShouldLendOnMyHomePage() {
     }
 
-    @Then("^I should see \"([^\"]*)\"$")
-    public void iShouldSee(String arg0) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
-    }
 
     @When("^(?:.*) logs in with:$")
     public void johnLogsInWith(List<User> data) {

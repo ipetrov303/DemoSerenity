@@ -9,32 +9,31 @@ import net.thucydides.core.annotations.Steps;
 
 import java.util.List;
 
+import static com.qualityhouse.serenity.page_objects.ProductPage.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class ProductStepsDefinitions {
 
+    static ProductPreferences product;
+
     @Steps
     private ProductPageActions johnny;
+    private ProductPage productPage;
 
-    ProductPage productPage;
+    @When("^he adds product to the cart with order details:$")
+    public void heSelectsOrderOptions(List<ProductPreferences> data) {
+        product = data.get(0);
 
-    @When("^John adds the product with his preferences to the cart:$")
-    public void johnAddsTheProductWithHisPreferencesToTheCart(List<ProductPreferences> data) {
-        ProductPreferences product = data.get(0);
+        product.setName(johnny.readsTextFrom(productPage.productName));
+        product.setUnitPrice(johnny.readsDoubleFrom(UNIT_PRICE_LOCATOR));
+
         johnny.addToCart(product);
     }
 
     @Then("^notification \"([^\"]*)\" is shown$")
     public void notificationIsShown(String success_notification) {
-        assertThat(johnny.readsTextFrom(productPage.successNotification)).containsIgnoringCase(success_notification);
+        assertThat(johnny.readsTextFrom(SUCCESS_MESSAGE_ADDED_TO_CART)).containsIgnoringCase(success_notification);
     }
-
-    @When("^John clicks on the proceed to checkout button$")
-    public void johnClicksOnTheProceedToCheckoutButton() {
-        johnny.clicksOnProceedToCheckOutButton();
-    }
-
-
 
 }

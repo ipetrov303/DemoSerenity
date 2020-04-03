@@ -4,6 +4,7 @@ import com.qualityhouse.serenity.page_objects.WomensClothingPage;
 import com.qualityhouse.serenity.steps.libraries.WomensClothingPageActions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.When;
 import net.thucydides.core.annotations.Steps;
 
 public class WomensClothingStepsDefinitions {
@@ -18,7 +19,8 @@ public class WomensClothingStepsDefinitions {
         womensClothingPage.open();
     }
 
-    @And("^he chooses the first product on Women's Clothing Page$")
+    @Given("^he chooses the first product on Women's Clothing Page$")
+    @When("^he chooses the first product$")
     public void heChoosesTheFirstProductOnWomenSClothingPage() {
         johnny.clicksOnFirstProductOnPage();
     }

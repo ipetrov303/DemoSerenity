@@ -6,8 +6,13 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 import org.openqa.selenium.By;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
+import static com.qualityhouse.serenity.page_objects.CartPage.PRODUCT_TOTAL_PRICE;
 import static com.qualityhouse.serenity.page_objects.components.ProductPageComponents.COLOR_OPTIONS;
 
 
@@ -82,6 +87,11 @@ public class BasesActions {
     }
 
     @Step
+    public String readsTextFrom(By locator) {
+        return readsTextFrom((WebElementFacade) currentPage.find(locator));
+    }
+
+    @Step
     public String getQuantityOfProduct(WebElementFacade webElement) {
 
         return webElement.waitUntilVisible().getAttribute("value");
@@ -100,13 +110,48 @@ public class BasesActions {
     }
 
     @Step
-    public Double calculateTotalPrice() {
-        double totalShipping = Double.parseDouble(readsTextFrom(cartPage.priceOfShipping).substring(1));
-        double unitPrice = Double.parseDouble(readsTextFrom(cartPage.unitPrice).substring(1));
-        double totalTax = Double.parseDouble(readsTextFrom(cartPage.totalTaxPrice).substring(1));
-        double totalQuantity = Double.parseDouble(getQuantityOfProduct(cartPage.quantityField));
-        System.out.println(unitPrice);
+    public List<String> readsTextFromList( By listItemsLocator )
+    {
+        List<WebElementFacade> errorsItemsElements = currentPage.findAll( listItemsLocator );
+        List<String> errorMessages = new ArrayList<>( errorsItemsElements.size() );
 
-        return unitPrice * totalQuantity + totalShipping + totalTax;
+        for ( WebElementFacade item : errorsItemsElements )
+        {
+            errorMessages.add( item.getText()
+                    .trim() );
+        }
+        return errorMessages;
     }
+
+
+    public String getProductPrice() {
+        return readsTextFrom(PRODUCT_TOTAL_PRICE).substring(1);
+    }
+
+
+    @Step
+    public int readsNumberFrom(By locator) {
+        String numericText = readsTextFrom((WebElementFacade) currentPage.find(locator));
+        return Integer.parseInt(numericText);
+    }
+
+    @Step
+    public int readsNumericValueFrom(By locator) {
+        String numericText = currentPage.find(locator).getValue();
+        return Integer.parseInt(numericText);
+    }
+
+    @Step
+    public double readsDoubleFrom(By locator) {
+        String numericText = readsTextFrom((WebElementFacade) currentPage.find(locator));
+        NumberFormat number = NumberFormat.getCurrencyInstance(Locale.US);
+
+        try {
+            return number.parse(numericText).doubleValue();
+        } catch (ParseException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Can't convert " + numericText + " to Double!");
+        }
+    }
+
 }

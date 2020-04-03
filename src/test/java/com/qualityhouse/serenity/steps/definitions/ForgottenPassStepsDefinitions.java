@@ -34,4 +34,10 @@ public class ForgottenPassStepsDefinitions {
         assertThat(petko.readsTextFrom(forgottenPassPage.forgottenPassSuccess))
                 .as("Success message should be displayed").containsIgnoringCase(success_message);
     }
+
+    @Then("^error message \"([^\"]*)\" should be displayed$")
+    public void errorMessageShouldBeDisplayed(String error_message) {
+        assertThat(petko.readsTextFrom(forgottenPassPage.forgottenPassErrors))
+                .as("Success message should be displayed").containsIgnoringCase(error_message);
+    }
 }
